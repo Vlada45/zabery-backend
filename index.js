@@ -25,15 +25,14 @@ app.use(cors());
 // Parsování příchozích JSON požadavků
 app.use(express.json({limit: '10mb'}));
 
-const env = require('dotenv').config();
-
 // Použití rout pro autentifikaci uživatele
 app.use('/auth', authRoutes);
 
 // Použití rout pro práci s jednotlivými klipy a částicemi
 app.use('/data', pieceRoutes);
 
-// Spuštění serveru na portu 4000
-app.listen(4000, () => {
-    console.log('Server běží na portu 4000');
+// Spuštění serveru na portu
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+    console.log(`Server běží na portu ${PORT}`);
 });
